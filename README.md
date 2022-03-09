@@ -41,6 +41,7 @@ Publication date: April 08, 2021
     - [Efficiency](#efficiency)
   - [PHP](#php)
 - [Tutorial: creating a PAF package](#tutorial-creating-a-paf-package)
+- [Examples](#examples)
 
 # Introduction
 ## Purpose and application of PAF
@@ -650,3 +651,14 @@ To check whether measurement is static or dynamic:
 
 
 [^1]: These steps are best performed by modifying the example files available on https://github.com/qualisys/paf-resources
+
+# Examples
+
+Our examples for various processing engines provides a great starting point for your PAF development.
+
+- [Excel](https://github.com/qualisys/paf-excel-example)
+- [Matlab](https://github.com/qualisys/paf-matlab-example)
+- [OpenSim](https://github.com/qualisys/paf-opensim-example)
+- [Python](https://github.com/qualisys/paf-python-example)
+- [Theia Markerless](https://github.com/qualisys/paf-theia-markerless-example)
+- [Visual3D](https://github.com/qualisys/paf-visual3d-example)
