@@ -232,7 +232,7 @@ Analyses:
 ```
 #### Visual3D analysis
 >Note: this analysis type requires the "Project Automation Framework" developer license. Instead, you can use the External program analysis type and specify Visual3D as the external program. An example for this can be found at:
-https://github.com/qualisys/paf-resources/tree/master/Visual3D%20Example.
+https://github.com/qualisys/paf-visual3d-example.
 >
 The Visual3D analysis has the following properties:
 - **Pipeline template**: The name of a template file in the Templates directory. This file will be instantiated and used as the pipeline script in visual 3d. This property is mandatory.
@@ -651,7 +651,7 @@ To check whether measurement is static or dynamic:
 8. Import or collect .qtm files into the PAF structure and test the package.
 
 
-[^1]: These steps are best performed by modifying the example files available on https://github.com/qualisys/paf-resources
+[^1]: These steps are best performed by modifying the example files, linked below.
 
 # Examples
 
