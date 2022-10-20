@@ -256,7 +256,7 @@ The template instantiation is done in the following way:
     - **$template_file** is the full path and name of the template file.
     - **$xml_file** is the session xml file.
     - **$cmo_file** is the session cmo file.
-    - $working_directory is the working directory (the session directory containing all measurements and data).
+    - **$working_directory** is the working directory (the session directory containing all measurements and data).
     - **$template_directory** is the template directory.
     - **$analysis_name** is the name of the analysis being executed.
     - **$visual3d_path** is the whole path of Visual3D/Reckon3D executable that is set as external program in QTM project options (> QTM 2.16).
