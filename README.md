@@ -492,7 +492,7 @@ After adding the project to the Packages folder, the option to use a PAF package
 ![New_project](assets/images/New_project.png)
 
 # Preparing Visual3D scripts for PAF
-As described in the previous section, PAF gives QTM the ability to pre-process Visual3D pipelines by evaluating PHP code with the script template. The script template needs to be set up so that the resulting Visual3D pipeline script includes only valid Visual3D pipeline commands. The pipeline language is developed and maintained by CMotion. It provides the user with control over almost the complete functionality of Visual3D. Documentation is provided by C-Motion: http://www.c-motion.com/v3dwiki/index.php?title=Visual3D_Documentation.  
+As described in the previous section, PAF gives QTM the ability to pre-process Visual3D pipelines by evaluating PHP code with the script template. The script template needs to be set up so that the resulting Visual3D pipeline script includes only valid Visual3D pipeline commands. The pipeline language is developed and maintained by C-Motion. It provides the user with control over almost the complete functionality of Visual3D. Documentation is provided by C-Motion: http://www.c-motion.com/v3dwiki/index.php?title=Visual3D_Documentation.  
 
 QTM instantiates this script when the user starts an analysis by clicking the Analysis button and the associated analysis type is Visual3D. At this point, QTM processes any PHP code contained within the script template and saves an instantiated copy of the script in the session folder. Visual3D is started and will process this pipeline. The instantiated version of the pipeline will remain in the session folder and is available for documentation, debugging or testing. 
 
