@@ -1,8 +1,6 @@
 # Project Automation Framework
 Documentation  
-Version: 3.0.0  
-QTM version: 2018.1  
-Publication date: April 08, 2021
+Version: 3.0.0
 
 # Table of Contents
 - [Project Automation Framework](#project-automation-framework)
