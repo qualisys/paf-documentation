@@ -139,6 +139,7 @@ This section contains information that the package management system uses. It is
     Required QTM version: 2.7
     Previous names: [Gait test, Gait]
     Encoding bytes: €€€€€
+    Source: https://source.url
 ```
 The possible properties of this section are:
 - **Name**: The name of the package. Show when creating a new project and used to keep the connection between a project and the package it was created from to, for instance, know if there is a new version of a package. This means that this value should not be changed unless strictly necessary because that will break the connection between existing projects and new versions of the package.
@@ -146,6 +147,7 @@ The possible properties of this section are:
 - **Required QTM version**: Two or three digits separated by a period sign. The QTM version that is required for this package to work properly. Checked on install time. Must include major and minor version number and can optionally include build number too.
 - **Previous names**: A sequence of names that this package has had earlier in development. This is used only when checking if a project should be upgraded and allows for packages to be renamed without losing the project upgrade path.
 - **Encoding bytes**: It is used to handle special characters. Use `€€€€€`. Note that settings.paf has to be saved with ANSI encoding (Introduced in QTM 2022.1).
+- **Source**: Defines the url to the server QTM should connect to if online processing wants to be used.
 
 ### Types
 The structure of the types section is:
