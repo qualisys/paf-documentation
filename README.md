@@ -658,7 +658,7 @@ To check whether measurement is static or dynamic:
 # Examples
 
 Our examples for various processing engines provides a great starting point for your PAF development.
-
+- [AnyBody](https://github.com/qualisys/paf-anybody-example)
 - [Excel](https://github.com/qualisys/paf-excel-example)
 - [Matlab](https://github.com/qualisys/paf-matlab-example)
 - [OpenSim](https://github.com/qualisys/paf-opensim-example)
