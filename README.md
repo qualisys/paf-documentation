@@ -284,11 +284,13 @@ The report analysis runs the external ReportGenerator program located in the tem
 #### Compound
 This analysis combines several other analyses into consecutive steps. By default subsequent analysis is started after previous one has finished unless **Do not wait for Visual3D** or **Do not wait for Application** property is set. It has the following properties:
 - **Compound**: Required. An array of analysis steps.
+- **Display name**: Optional. If provided, this is the name displayed in QTM.
 - **Prerequisites**: Optional. See above.
 
 ```
   Analysis and Export:
     Type: Compound
+	Display name: A and E
     Components: [Processing, Export]
 ```
 
