@@ -290,7 +290,7 @@ This analysis combines several other analyses into consecutive steps. By default
 ```
   Analysis and Export:
     Type: Compound
-	Display name: A and E
+    Display name: A and E
     Components: [Processing, Export]
 ```
 
