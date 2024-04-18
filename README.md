@@ -242,8 +242,8 @@ name].settings.xml.
 - **Arguments**: Optional. An array of arguments to be sent to the program being started. Each argument will be subject to pattern expansion and if the result contains spaces, it will be enclosed in double quotation marks when the command line is built.
 - **Show output file**: Optional. If set, and if the Output file property has been specified, and if the execution of the external program is successful (exit code 0), the output file will be shown in the systems standard program for that file type (as if it was double-clicked in the windows explorer).
 - **Do not wait for Application**: If analysis includes this property, QTM does not wait for external program to finish the processing. If property does not exit, to continue with subsequent analyses, external program must be closed manually (> QTM 2019.1).
-- **Measurements:** See: [Overview of analyses]
-- **Exclude:** See: [Overview of analyses]
+- **Measurements:** See [Overview of analyses](#overview-of-analyses)
+- **Exclude:** See [Overview of analyses](#overview-of-analyses)
 
 Example:
 ```
@@ -327,8 +327,8 @@ This analysis will instantiate a single PHP template and put the result in the w
 properties:
 - **Template:** Required. The name of the input file. If this name contains any path delimiter tokens, it will be considered to be relative to the project directory, otherwise QTM will assume that the input file is placed in the templates folder.
 - **Output file**: Optional name of the output file. The output file is always put in the current working directory. If this option is not supplied, the name of the template file will be used. If the template file name ends with the .php extension, it will be remove from output filename.
-- **Measurements:** See: [Overview of analyses]
-- **Exclude:** See: [Overview of analyses]
+- **Measurements:** See [Overview of analyses](#overview-of-analyses)
+- **Exclude:** See [Overview of analyses](#overview-of-analyses)
 
 #### Create skeleton (Introduced in QTM 2021.2)
 This analysis creates skeletons for the specified file provided that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the followng properties:
@@ -342,8 +342,8 @@ This analysis creates skeletons for the specified file provided that the correct
 
 #### Solve skeleton (Introduced in QTM 2021.2)
 This analysis solves skeletons for the specified files provided that the skeletons already exist  and that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the following properties:
-- **Measurements:** See: [Overview of analyses]
-- **Exclude:** See: [Overview of analyses]
+- **Measurements:** See [Overview of analyses](#overview-of-analyses)
+- **Exclude:** See [Overview of analyses](#overview-of-analyses)
 
 Example 1:
 ```
