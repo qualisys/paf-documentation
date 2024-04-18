@@ -208,6 +208,7 @@ Each analysis definition is a map that has some properties common to all analysi
 > Note: Prerequisites can't be used when executing parent session level analyses.
 
 - **Output file**: The name of a file that is created when this analysis is run. QTM uses this to check if the analysis has been completed. It is also used to issue a warning if this file has been changed since the analysis was last run for the current session. This property can contain patterns.
+
 - **Exclude:** Optional. A string or list of strings to specify the file names to exclude. The string patterns available are the same as for the ``Measurements`` field.
 
   Default:
@@ -242,7 +243,7 @@ name].settings.xml.
 - **Arguments**: Optional. An array of arguments to be sent to the program being started. Each argument will be subject to pattern expansion and if the result contains spaces, it will be enclosed in double quotation marks when the command line is built.
 - **Show output file**: Optional. If set, and if the Output file property has been specified, and if the execution of the external program is successful (exit code 0), the output file will be shown in the systems standard program for that file type (as if it was double-clicked in the windows explorer).
 - **Do not wait for Application**: If analysis includes this property, QTM does not wait for external program to finish the processing. If property does not exit, to continue with subsequent analyses, external program must be closed manually (> QTM 2019.1).
-- **Measurements:** See [Overview of analyses](#overview-of-analyses)
+- **Measurements:** Used to select which measurements to export when using ``Export Measurements``. See [Overview of analyses](#overview-of-analyses)
 - **Exclude:** See [Overview of analyses](#overview-of-analyses)
 
 Example:
@@ -327,7 +328,7 @@ This analysis will instantiate a single PHP template and put the result in the w
 properties:
 - **Template:** Required. The name of the input file. If this name contains any path delimiter tokens, it will be considered to be relative to the project directory, otherwise QTM will assume that the input file is placed in the templates folder.
 - **Output file**: Optional name of the output file. The output file is always put in the current working directory. If this option is not supplied, the name of the template file will be used. If the template file name ends with the .php extension, it will be remove from output filename.
-- **Measurements:** See [Overview of analyses](#overview-of-analyses)
+- **Measurements:** Selected measurements to be passed as arguments to the PHP script. See: [Overview of analyses](#overview-of-analyses)
 - **Exclude:** See [Overview of analyses](#overview-of-analyses)
 
 #### Create skeleton (Introduced in QTM 2021.2)
@@ -342,7 +343,7 @@ This analysis creates skeletons for the specified file provided that the correct
 
 #### Solve skeleton (Introduced in QTM 2021.2)
 This analysis solves skeletons for the specified files provided that the skeletons already exist  and that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the following properties:
-- **Measurements:** See [Overview of analyses](#overview-of-analyses)
+- **Measurements:** Selected measurements for which to solve skeletons. See [Overview of analyses](#overview-of-analyses)
 - **Exclude:** See [Overview of analyses](#overview-of-analyses)
 
 Example 1:
