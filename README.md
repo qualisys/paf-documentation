@@ -139,7 +139,7 @@ Decide if you need.
 Example:
 ```
 Types:
-  Subject:
+  Subject:  
     ...
   Date:
     ...
@@ -251,7 +251,6 @@ Each analysis definition is a map that has some properties common to all analysi
 >
 - **Prerequisites**: A sequence of measurement type names and analysis names that has to be completed before this analysis can be run. Measurement types are considered complete for the current session when the user has made at least the number of measurements given by that measurement type’s Minimum count field. Analyses are considered complete when the file denoted by the Output file field exists.
 > Note: Prerequisites can't be used when executing parent session level analyses.
-
 - **Output file**: The name of a file that is created when this analysis is run. QTM uses this to check if the analysis has been completed. It is also used to issue a warning if this file has been changed since the analysis was last run for the current session. This property can contain patterns.
 
 - **Exclude:** Optional. A string or list of strings to specify the file names to exclude. The string patterns available are the same as for the ``Measurements`` field.
