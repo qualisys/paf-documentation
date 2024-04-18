@@ -219,16 +219,13 @@ Each analysis definition is a map that has some properties common to all analysi
     - ``..`` Parent dir 
     -  ``*`` Wild card file or directory name. Using ``**`` to traverse multiple levels of subfolders is not supported.
 
-    Default:
+    Default:    
 
     If the Measurements field has not been defined it's set to the default value: ``'*.qtm' ``
 
     Example:
     ```
-    Measurements: 
-      - '*.qtm'
-      - "..\\Folder\\SubFolder*\\*File.qtm"
-      - '*\*'
+    Measurements: ['*.qtm', "..\\Folder\\SubFolder*\\*File.qtm", '*\*']
     ```
 
 #### External program
