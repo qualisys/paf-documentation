@@ -117,7 +117,7 @@ PAF type definitions are organized into classes. Classes are currently not used 
 When type name references are required in the PAF file, two forms are applicable. Either a class name can be given, which will include all types of that class or a ClassName.TypeName form can be used to reference a single type only.
 
 ## Analysis Modes
-An analysis is one or a series of operations which uses QTM to generate output data. It can use QTM measurements in the data tree to do calculations and export files. Exactly what the analysis does and which files it uses is defined in the PAF YAML file. See [Overview of analyses](#overview-of-analyses) for more information about analyses.
+An analysis is one or more operations which uses QTM to generate output data. It can use QTM measurements in the data tree to do calculations and export files. Exactly what the analysis does and which files it uses is defined in the PAF YAML file. See [Overview of analyses](#overview-of-analyses) for more information about analyses.
 
 Two modes of execution of analyses are supported, these are defined by their relation to their measurement files. 
 
@@ -125,10 +125,10 @@ Two modes of execution of analyses are supported, these are defined by their rel
     In this mode measurement files are placed directly under the folder the analysis.
 
 2. ``Parent sessions level analysis``
-    In this mode the analsysis is executed on a folder that does not directly contain measurement files. Instead it contains Subsession folders, which in turn contain the measurement files.
+    In this mode the analysis is executed on a folder that does not directly contain measurement files. Instead it contains Subsession folders, which in turn contain the measurement files.
     This is useful when you need to create bulk analyses on a large amount of files.
 
-These modes also affects if certain analyses and analysis features are a available. This is described per- analysis.
+These modes determine if certain analyses and analysis features are a available. This is described per- analysis.
 
 Selecting which mode to use is done by creating the session structure in the PAF YAML file. 
 
@@ -253,7 +253,7 @@ Each analysis definition is a map that has some properties common to all analysi
 
   Default:
 
-  If he exclude field has not been defined no extra exclusions will be applied.
+  If the exclude field has not been defined no extra exclusions will be applied.
 
 - **Measurements:** Optional. A list of strings which specify the measurement files to use. Only measurements that are marked as used in the PAF pane are affected. Measurements found by the ``Exclude`` filter are also not used. It's specified per analysis if the ``Measurements`` field is utilized for that particular analysis. 
     Accepts special characters patterns such as
