@@ -132,10 +132,6 @@ These modes also affects if certain analyses and analysis features are a availab
 
 Selecting which mode to use is done by creating the session structure in the PAF YAML file. 
 
-Decide if you need.
-   - Session -> Measurement (``Session level analysis``)
-   - Session -> Subsession -> Measurement (``Parent sessions level analysis``)
-
 Example:
 ```
 Types:
