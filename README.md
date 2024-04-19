@@ -373,7 +373,7 @@ properties:
 
 #### Create skeleton (Introduced in QTM 2021.2)
 This analysis creates skeletons for the specified file provided that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the followng properties:
-- **Measurements:** Required. A string to specify the file name used to create the skeletons. Wildcard can be used in the name to avoid specifying the whole name. If multiple files are detected, the first measurement that matches the specified file name will be used. 
+- **Measurements:** Specifies the file to use for creating the skeletons. If multiple files are detected, only one is used.
 
     Relative paths may be used for sharing the same calibration measurements between subsessions. 
     Example: ```Measurements: ..\Static\Static*```
@@ -391,7 +391,7 @@ Example 1:
 ```
   Create skeletons:   
     Type: Create skeleton
-    Calibration measurement: 'Static*'
+    Measurements: 'Static*'
   Solve skeletons:
     Type: Solve skeleton
     Measurements: '*' 
@@ -405,7 +405,7 @@ Example 2 (using Compound to combine both types):
     Components: [Create skeletons, Solve skeletons]
   Create skeletons:
     Type: Create skeleton
-    Calibration measurement: 'Static*'
+    Measurements: 'Static*'
   Solve skeletons:
     Type: Solve skeleton
     Measurements: 'Running*'
