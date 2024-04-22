@@ -116,6 +116,47 @@ PAF type definitions are organized into classes. Classes are currently not used 
 
 When type name references are required in the PAF file, two forms are applicable. Either a class name can be given, which will include all types of that class or a ClassName.TypeName form can be used to reference a single type only.
 
+## Analysis Modes
+An analysis is one or more operations which uses QTM to generate output data. It can use QTM measurements in the data tree to do calculations and export files. Exactly what the analysis does and which files it uses is defined in the PAF YAML file. See [Overview of analyses](#overview-of-analyses) for more information about analyses.
+
+Two modes of execution of analyses are supported, these are defined by their relation to their measurement files.
+
+1. ``Session mode``
+    In this mode measurement files are placed directly under the folder the analysis.
+
+2. ``Parent sessions mode``
+    In this mode the analysis is executed on a folder that does not directly contain measurement files. Instead it contains only folders, which in turn can contain additional folders or measurement files.
+    This is useful when you need to create bulk analyses on select portions of the data tree.
+
+These modes determine if certain analyses and analysis features are a available. This is described per- analysis.
+
+Selecting which mode to use is done by creating the session structure in the PAF YAML file. 
+
+Example:
+```
+Types:
+  Subject:  
+    ...
+  Date:
+    ...
+  Session:
+    # Since Functional Assessment Session contains analyses and
+    # no measurements.
+    # Analyses are executed in Parent mode
+    Functional Assessment Session:
+      ...
+      Children: [Functional Assessment Subsessions]
+      Analyses: [Solve skeletons, Test analysis]
+
+    # Since Running Session contains analyses and
+    # measurements.
+    # Analyses are executed in Session mode
+    Running Session:
+      ...
+      Measurements: [Static trial (running), Running trial]
+      Analyses: [Label and solve skeletons, Solve skeletons, Test analysis]
+```
+
 ## File sections
 The PAF file is of the YAML map form. Different keys denote the different sections of the file.
 
@@ -205,7 +246,28 @@ Each analysis definition is a map that has some properties common to all analysi
 >Note: only External program and Compound are available to all users. Other types require the Project Automation Framework developer license which is used for internal Qualisys development and by development partners.
 >
 - **Prerequisites**: A sequence of measurement type names and analysis names that has to be completed before this analysis can be run. Measurement types are considered complete for the current session when the user has made at least the number of measurements given by that measurement type’s Minimum count field. Analyses are considered complete when the file denoted by the Output file field exists.
+> Note: Prerequisites can't be used when executing analyses in parent session mode.
 - **Output file**: The name of a file that is created when this analysis is run. QTM uses this to check if the analysis has been completed. It is also used to issue a warning if this file has been changed since the analysis was last run for the current session. This property can contain patterns.
+
+- **Exclude**: Optional. A string or list of strings to specify the file names to exclude. The string patterns available are the same as for the ``Measurements`` field.
+
+  Default:
+
+  If the exclude field has not been defined no extra exclusions will be applied.
+
+- **Measurements**: Optional. A list of strings which specify the measurement files to use. Only measurements that are marked as used in the PAF pane are affected. Measurements found by the ``Exclude`` filter are also not used. It's specified per analysis if the ``Measurements`` field is utilized for that particular analysis. 
+    Accepts special characters patterns such as
+    - ``..`` Parent dir 
+    - ``*`` Wild card file or directory name (``**`` is not supported).
+
+    Default:    
+
+    If the Measurements field has not been defined it's set to the default value: ``'*.qtm' ``
+
+    Example:
+    ```
+    Measurements: ['*.qtm', "..\\Folder\\SubFolder*\\*File.qtm", '*\*']
+    ```
 
 #### External program
 This analysis runs an arbitrary external program supplying a command line defined by the PAF file. There is optional support for exporting measurements as well as instantiating php template files before running the program.
@@ -213,6 +275,7 @@ This analysis runs an arbitrary external program supplying a command line define
 It has the following properties:
 -  **Program display name**: Required. The name to be displayed in the directories tab in project options where the user will have to locate the external executable. NB: Because this path varies between computers rather than between projects, it is not stored in the project, but in computer-global settings file. Several analyses in different projects may share the same Program display name and QTM will automatically use the same executable path for all of them.
 - **Export session**: Optional. If present, the metadata of the session, all its ancestors and the measurements are exported into a file called session.xml.
+> Note: Export session can't be used when executing analyses in parent session mode.
 - **Export measurements**: Optional. A single string or an array containing any combination of the following values: “TSV”, “C3D”, “MAT”. Will make QTM export all the selected measurements to the corresponding formats before running the external program. Use “xml settings” to export a file with measurement settings (e.g. capture start time and analog channel names). The file will be named [file
 name].settings.xml.
 - **Template files**: Optional. A single string or an array containing names of files in the template directory. Each file will be run through the PHP engine and the result written to a file with the same name in the session directory. Standard Windows wildcards are supported, but note that if the asterisk is used to match a part of the filename, the pattern must be enclosed in single quotation marks to make sure it is not parsed as a YAML alias.
@@ -220,6 +283,8 @@ name].settings.xml.
 - **Arguments**: Optional. An array of arguments to be sent to the program being started. Each argument will be subject to pattern expansion and if the result contains spaces, it will be enclosed in double quotation marks when the command line is built.
 - **Show output file**: Optional. If set, and if the Output file property has been specified, and if the execution of the external program is successful (exit code 0), the output file will be shown in the systems standard program for that file type (as if it was double-clicked in the windows explorer).
 - **Do not wait for Application**: If analysis includes this property, QTM does not wait for external program to finish the processing. If property does not exit, to continue with subsequent analyses, external program must be closed manually (> QTM 2019.1).
+- **Measurements**: Optional. Used to select which measurements to export when using ``Export Measurements``. See [Overview of analyses](#overview-of-analyses)
+- **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
 
 Example:
 ```
@@ -235,7 +300,9 @@ Analyses:
 #### Visual3D analysis
 >Note: this analysis type requires the "Project Automation Framework" developer license. Instead, you can use the External program analysis type and specify Visual3D as the external program. An example for this can be found at:
 https://github.com/qualisys/paf-visual3d-example.
->
+
+> Note: Visual3D analysis can't be used in parent session mode.
+
 The Visual3D analysis has the following properties:
 - **Pipeline template**: The name of a template file in the Templates directory. This file will be instantiated and used as the pipeline script in visual 3d. This property is mandatory.
 - **Do not wait for Visual3D**: If analysis includes this property, QTM does not wait for Visual3D to finish the processing. If property does not exit, to continue with subsequent analyses, Visual3D must be closed manually or Exit_Workspace; command has to be added to the very end of Visual3D script.
@@ -301,27 +368,30 @@ This analysis will instantiate a single PHP template and put the result in the w
 properties:
 - **Template:** Required. The name of the input file. If this name contains any path delimiter tokens, it will be considered to be relative to the project directory, otherwise QTM will assume that the input file is placed in the templates folder.
 - **Output file**: Optional name of the output file. The output file is always put in the current working directory. If this option is not supplied, the name of the template file will be used. If the template file name ends with the .php extension, it will be remove from output filename.
+- **Measurements**: Optional. Selected measurements to be passed as arguments to the PHP script. See: [Overview of analyses](#overview-of-analyses)
+- **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
 
 #### Create skeleton (Introduced in QTM 2021.2)
 This analysis creates skeletons for the specified file provided that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the followng properties:
-- **Calibration measurement:** Required. A string to specify the file name to create the skeletons. Wildcard can be used in the name to avoid specifying the whole name. If multiple files are detected, the first measurement that matches the specified file name will be used. 
+- **Measurements**: Required. Specifies the file to use for creating the skeletons. If multiple files are detected, only one is used.
 
     Relative paths may be used for sharing the same calibration measurements between subsessions. 
-    Example: ```Calibration measurement: ..\Static\Static*```
+    Example: ```Measurements: ..\Static\Static*```
 
     > Note: Frame number that is used to create the skeletons is set to the middle of the selected range.
-
+    
+    See [Overview of analyses](#overview-of-analyses) For general information about ``Measurements``
 
 #### Solve skeleton (Introduced in QTM 2021.2)
 This analysis solves skeletons for the specified files provided that the skeletons already exist  and that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the following properties:
-- **Measurements:** Required. A string or list of strings to specify the file names to solve the skeletons. Wildcard can be used in the name to specify multiple files at once. To specify all measurements, simply use the wildcard character. Only measurements that are marked as used in the PAF pane will be affected.
-- **Exclude:** Optional. A string or list of strings to specify the file names to exclude. Wildcard can be used in the name to specify multiple files at once.  Only measurements that are marked as used in the PAF pane will be affected.
+- **Measurements**: Optional. Selected measurements for which to solve skeletons. See [Overview of analyses](#overview-of-analyses)
+- **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
 
 Example 1:
 ```
   Create skeletons:   
     Type: Create skeleton
-    Calibration measurement: 'Static*'
+    Measurements: 'Static*'
   Solve skeletons:
     Type: Solve skeleton
     Measurements: '*' 
@@ -335,7 +405,7 @@ Example 2 (using Compound to combine both types):
     Components: [Create skeletons, Solve skeletons]
   Create skeletons:
     Type: Create skeleton
-    Calibration measurement: 'Static*'
+    Measurements: 'Static*'
   Solve skeletons:
     Type: Solve skeleton
     Measurements: 'Running*'
