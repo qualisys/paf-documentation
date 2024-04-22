@@ -255,6 +255,8 @@ Each analysis definition is a map that has some properties common to all analysi
 
   If the exclude field has not been defined no extra exclusions will be applied.
 
+- **Display name**: Optional. If provided, this is the name displayed drop-down list under "Start Processing". Otherwise the name in the defined by the analysis YAML node.
+
 - **Measurements**: Optional. A list of strings which specify the measurement files to use. Only measurements that are marked as used in the PAF pane are affected. Measurements found by the ``Exclude`` filter are also not used. It's specified per analysis if the ``Measurements`` field is utilized for that particular analysis. 
     Accepts special characters patterns such as
     - ``..`` Parent dir 
@@ -351,7 +353,6 @@ The report analysis runs the external ReportGenerator program located in the tem
 #### Compound
 This analysis combines several other analyses into consecutive steps. By default subsequent analysis is started after previous one has finished unless **Do not wait for Visual3D** or **Do not wait for Application** property is set. It has the following properties:
 - **Compound**: Required. An array of analysis steps.
-- **Display name**: Optional. If provided, this is the name displayed in QTM. If omitted, the name of the Analysis/Compound will be used ("Analysis and Export" in the example below).
 - **Prerequisites**: Optional. See above.
 
 ```
