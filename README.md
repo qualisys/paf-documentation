@@ -255,7 +255,7 @@ Each analysis definition is a map that has some properties common to all analysi
 
   If the exclude field has not been defined no extra exclusions will be applied.
 
-- **Display name**: Optional. If provided, this is the name displayed drop-down list under "Start Processing". Otherwise the name in the defined by the analysis YAML node.
+- **Display name**: Optional. If provided, this is the name displayed in the drop-down list under "Start Processing". Otherwise, the name defined by the analysis YAML node will be used.
 
 - **Measurements**: Optional. A list of strings which specify the measurement files to use. Only measurements that are marked as used in the PAF pane are affected. Measurements found by the ``Exclude`` filter are also not used. It's specified per analysis if the ``Measurements`` field is utilized for that particular analysis. 
     Accepts special characters patterns such as
