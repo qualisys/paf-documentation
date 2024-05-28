@@ -573,7 +573,7 @@ After adding the project to the Packages folder, the option to use a PAF package
 ![New_project](assets/images/New_project.png)
 
 # Preparing Visual3D scripts for PAF
-As described in the previous section, PAF gives QTM the ability to pre-process Visual3D pipelines by evaluating PHP code with the script template. The script template needs to be set up so that the resulting Visual3D pipeline script includes only valid Visual3D pipeline commands. The pipeline language is developed and maintained by C-Motion. It provides the user with control over almost the complete functionality of Visual3D. Documentation is provided by C-Motion: http://www.c-motion.com/v3dwiki/index.php?title=Visual3D_Documentation.  
+As described in the previous section, PAF gives QTM the ability to pre-process Visual3D pipelines by evaluating PHP code with the script template. The script template needs to be set up so that the resulting Visual3D pipeline script includes only valid Visual3D pipeline commands. The pipeline language is developed and maintained by C-Motion. It provides the user with control over almost the complete functionality of Visual3D. Documentation is provided by C-Motion: https://wiki.has-motion.com/index.php?title=Visual3D_Documentation.  
 
 QTM instantiates this script when the user starts an analysis by clicking the Analysis button and the associated analysis type is Visual3D. At this point, QTM processes any PHP code contained within the script template and saves an instantiated copy of the script in the session folder. Visual3D is started and will process this pipeline. The instantiated version of the pipeline will remain in the session folder and is available for documentation, debugging or testing. 
 
@@ -594,7 +594,7 @@ File_Open
 ## Editing Pipeline scripts
 Visual3D includes an editor for pipeline scripts (Pipeline Workshop). The advantage of this editor is that one command can be added at a time. The pipeline can be tested either by running it as whole (Execute button) or by running only the selected command (Step button). For PAF pipeline script templates, however, this is not possible as they will usually contain additional PHP code which cannot be interpreted by Visual3D. Often it is useful to create a first version of a script directly in Visual3D and to add the PHP code once this prototype has been tested.
 
-Therefore, PAF pipeline script templates should be edited with a text editor. One recommendation is [Notepad++](http://notepad-plus-plus.org/) because an add-in is available which enables automatic colouring and indentation for v3s files (https://c-motion.com/tools.php).
+Therefore, PAF pipeline script templates should be edited with a text editor. One recommendation is [Notepad++](http://notepad-plus-plus.org/).
 
 ## Basic recommendations and conventions
 It is recommended to write all template scripts to be as general and flexible as possible, as lab conventions may change or differ between setups (for example global lab coordinate system, or walking direction relative to global lab coordinate system).
@@ -612,7 +612,7 @@ Some Visual3D settings and preferences may have been changed by users, which may
 ### Virtual Lab
 Any calculations that are done relative to the global coordinate system should be done relative to a “virtual lab” instead of the global coordinate system. Examples include absolute body rotations (thorax, pelvis rotation relative to lab) or velocities (walking velocity, velocity of a racket/golf club).
 
-A virtual lab is defined the same way as a body segment in Visual3D. The segment definition is based on static landmarks placed in the global coordinate system which are usually identical to the tracking markers, so that the virtual lab will not change position (see http://www.c-motion.com/v3dwiki/index.php?title=Example:_Virtual_Lab).
+A virtual lab is defined the same way as a body segment in Visual3D. The segment definition is based on static landmarks placed in the global coordinate system which are usually identical to the tracking markers, so that the virtual lab will not change position (see https://wiki.has-motion.com/index.php?title=Example:_Virtual_Lab).
 
 If the conventions change, the script can easily be adapted by adjusting the definition of the virtual lab and the remaining script can be left unchanged. As the virtual lab is part of the model, it will be saved as part of a model template (.mdh) and the pipeline itself can remain unchanged.
 
