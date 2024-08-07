@@ -550,6 +550,7 @@ The default naming pattern is ```$TypeName$```. If directory names clash when a 
 - **PDF guide**: The name of a PDF file to show when the user clicks the Show guide button in the wizard pane.
 - **Icon**: The name of an icon file to show at the side of the item in the tree view.
 - **Keep wizard running beyond this type**: Normally the wizard stops after each type (and before doing the analysis) and the user has to click “Go” again to continue the wizard. If this flag is set for a certain type, the wizard will go on processing the next type. Currently this flag only applies to measurement types as those are the only types that can be present in the wizard. If it is set for the last measurement type in a session and an analysis is defined, it will be run directly after the last measurement has completed.  
+- **Auto export calibration**: If the value is Yes or True, QTM will automatically export calibration settings as `<measurement name>.settings.xml` directly after a measurement is captured. This field can be used on session nodes.
 
 For measurements, these fields are also available (and the default values of some of them are often set in the PAF file):
 - **Used**: Used for storing the value of the check mark at the side of the measurement button in the wizard pane. This field should not be tampered with at all from the PAF file.
