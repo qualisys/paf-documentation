@@ -371,6 +371,8 @@ properties:
 - **Measurements**: Optional. Selected measurements to be passed as arguments to the PHP script. See: [Overview of analyses](#overview-of-analyses)
 - **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
 
+The return value of the "instantiate template" can return 0 for success and non-zero for errors. As of QTM 2024.3, returning an error code of 999 indicates that an analysis should be aborted. If other error values are returned, analysis will continue on all selected measurements.
+
 #### Create skeleton (Introduced in QTM 2021.2)
 This analysis creates skeletons for the specified file provided that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the followng properties:
 - **Measurements**: Required. Specifies the file to use for creating the skeletons. If multiple files are detected, only one is used.
