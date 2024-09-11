@@ -421,6 +421,14 @@ Measurements are selected using `Measurements` and `Exclude` properties.
 - **Measurements**: Optional. Selected measurements. See: [Overview of analyses](#overview-of-analyses)
 - **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
 
+Example:
+```
+  Create custom skeleton:   
+    Type: Run script
+    Measurements: 'Static*'
+    Filename: Scripts\create_custom_skeleton.py
+```
+
 ### Fields
 The fields section specifies all the fields that can be added to a type definition. There are also a number of field specifications hardcoded into QTM that are always added to the types. For a complete list, see the Default fields section.
 
