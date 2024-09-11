@@ -12,6 +12,7 @@ Version: 3.0.0
 - [The Settings.paf file](#the-settingspaf-file)
   - [Purpose](#purpose)
   - [YAML](#yaml)
+  - [Analysis Modes](#analysis-modes)
   - [File sections](#file-sections)
     - [Globals](#globals)
     - [Package Information](#package-information)
@@ -122,15 +123,13 @@ An analysis is one or more operations which uses QTM to generate output data. It
 Two modes of execution of analyses are supported, these are defined by their relation to their measurement files.
 
 1. ``Session mode``
-    In this mode measurement files are placed directly under the folder the analysis.
+    In this mode measurement files are placed directly under the folder of the analysis.
 
 2. ``Parent sessions mode``
     In this mode the analysis is executed on a folder that does not directly contain measurement files. Instead it contains only folders, which in turn can contain additional folders or measurement files.
     This is useful when you need to create bulk analyses on select portions of the data tree.
 
-These modes determine if certain analyses and analysis features are a available. This is described per- analysis.
-
-Selecting which mode to use is done by creating the session structure in the PAF YAML file. 
+The mode determines if certain analyses and analysis features are a available, the availability is described per- analysis. Selecting which mode is used is done by modifying the structure in the PAF YAML file. 
 
 Example:
 ```
@@ -140,17 +139,15 @@ Types:
   Date:
     ...
   Session:
-    # Since Functional Assessment Session contains analyses and
-    # no measurements.
-    # Analyses are executed in Parent mode
+    # Since the `Functional Assessment Session` contains analyses and
+    # no measurements, its analyses are executed in `Parent session mode`
     Functional Assessment Session:
       ...
       Children: [Functional Assessment Subsessions]
       Analyses: [Solve skeletons, Test analysis]
 
-    # Since Running Session contains analyses and
-    # measurements.
-    # Analyses are executed in Session mode
+    # Since the `Running Session` contains analyses and
+    # measurements, its analyses are executed in `Session mode`
     Running Session:
       ...
       Measurements: [Static trial (running), Running trial]
