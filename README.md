@@ -129,7 +129,7 @@ Two modes of execution of analyses are supported, these are defined by their rel
     In this mode the analysis is executed on a folder that does not directly contain measurement files. Instead it contains only folders, which in turn can contain additional folders or measurement files.
     This is useful when you need to create bulk analyses on select portions of the data tree.
 
-The mode determines if certain analyses and analysis features are a available, the availability is described per- analysis. Selecting which mode is used is done by modifying the structure in the PAF YAML file. 
+The mode determines if certain analyses and analysis features are available, the availability is described per- analysis. Selecting which mode is used is done by modifying the structure in the PAF YAML file. 
 
 Example:
 ```
