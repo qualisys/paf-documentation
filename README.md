@@ -26,6 +26,7 @@ Version: 3.0.0
       - [Instantiate template](#instantiate-template)
       - [Create skeleton (Introduced in QTM 2021.2)](#create-skeleton-introduced-in-qtm-20212)
       - [Solve skeleton (Introduced in QTM 2021.2)](#solve-skeleton-introduced-in-qtm-20212)
+      - [Run script (Introduced in QTM 2024.3)](#run-script-introduced-in-qtm-20243)
     - [Fields](#fields)
     - [Columns](#columns)
   - [Default fields added by QTM](#default-fields-added-by-qtm)
@@ -252,6 +253,16 @@ Each analysis definition is a map that has some properties common to all analysi
 
   If the exclude field has not been defined no extra exclusions will be applied.
 
+- **Display name**: Optional. If provided, this is the name displayed in the drop-down list under "Start Processing". Otherwise, the name defined by the analysis YAML node will be used.
+  Example:
+  ```
+    Analysis and Export:
+      Type: Compound
+      Display name: A and E
+      Components: [Processing, Export]
+  ```
+  ![Display_name_example](assets/images/Display_name_example.png)
+
 - **Measurements**: Optional. A list of strings which specify the measurement files to use. Only measurements that are marked as used in the PAF pane are affected. Measurements found by the ``Exclude`` filter are also not used. It's specified per analysis if the ``Measurements`` field is utilized for that particular analysis. 
     Accepts special characters patterns such as
     - ``..`` Parent dir 
@@ -348,17 +359,7 @@ The report analysis runs the external ReportGenerator program located in the tem
 #### Compound
 This analysis combines several other analyses into consecutive steps. By default subsequent analysis is started after previous one has finished unless **Do not wait for Visual3D** or **Do not wait for Application** property is set. It has the following properties:
 - **Compound**: Required. An array of analysis steps.
-- **Display name**: Optional. If provided, this is the name displayed in QTM. If omitted, the name of the Analysis/Compound will be used ("Analysis and Export" in the example below).
 - **Prerequisites**: Optional. See above.
-
-```
-  Analysis and Export:
-    Type: Compound
-    Display name: A and E
-    Components: [Processing, Export]
-```
-
-![Display_name_example](assets/images/Display_name_example.png)
 
 #### Instantiate template
 This analysis will instantiate a single PHP template and put the result in the working directory. It has the following
@@ -367,6 +368,8 @@ properties:
 - **Output file**: Optional name of the output file. The output file is always put in the current working directory. If this option is not supplied, the name of the template file will be used. If the template file name ends with the .php extension, it will be remove from output filename.
 - **Measurements**: Optional. Selected measurements to be passed as arguments to the PHP script. See: [Overview of analyses](#overview-of-analyses)
 - **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
+
+The return value of the "instantiate template" can return 0 for success and non-zero for errors. As of QTM 2024.3, returning an error code of 999 indicates that an analysis should be aborted. If other error values are returned, analysis will continue on all selected measurements.
 
 #### Create skeleton (Introduced in QTM 2021.2)
 This analysis creates skeletons for the specified file provided that the correct marker names and prefixes are used (see the marker set guides in QTM > Skeleton for more information). It has the followng properties:
@@ -406,6 +409,25 @@ Example 2 (using Compound to combine both types):
   Solve skeletons:
     Type: Solve skeleton
     Measurements: 'Running*'
+```
+
+#### Run script (Introduced in QTM 2024.3)
+This analysis runs a script using the [QTM Scripting Interface](https://qualisys.github.io/qtm-scripting/) and supports execution on multiple measurements.
+Each measurement is opened separately, the script is executed and then the measurement is closed.
+The script is selected using the `Filename` property.
+Measurements are selected using `Measurements` and `Exclude` properties.
+``NOTE: Saving measurements is not supported when using QSI in QTM 2024.3``
+Run script has the following properties:
+- **Filename**: Required. The path and name of the input file. It uses the ``Templates`` directory of the project as a base when the path is relative.
+- **Measurements**: Optional. Selected measurements. See: [Overview of analyses](#overview-of-analyses)
+- **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
+
+Example:
+```
+  Create custom skeleton:   
+    Type: Run script
+    Measurements: 'Static*'
+    Filename: Scripts\create_custom_skeleton.py
 ```
 
 ### Fields
@@ -547,6 +569,7 @@ The default naming pattern is ```$TypeName$```. If directory names clash when a 
 - **PDF guide**: The name of a PDF file to show when the user clicks the Show guide button in the wizard pane.
 - **Icon**: The name of an icon file to show at the side of the item in the tree view.
 - **Keep wizard running beyond this type**: Normally the wizard stops after each type (and before doing the analysis) and the user has to click “Go” again to continue the wizard. If this flag is set for a certain type, the wizard will go on processing the next type. Currently this flag only applies to measurement types as those are the only types that can be present in the wizard. If it is set for the last measurement type in a session and an analysis is defined, it will be run directly after the last measurement has completed.  
+- **Auto export calibration**: If the value is Yes or True, QTM will automatically export calibration settings as `<measurement name>.settings.xml` directly after a measurement is captured. This field can be used on session nodes.
 
 For measurements, these fields are also available (and the default values of some of them are often set in the PAF file):
 - **Used**: Used for storing the value of the check mark at the side of the measurement button in the wizard pane. This field should not be tampered with at all from the PAF file.
