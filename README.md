@@ -25,6 +25,7 @@ Version: 3.0.0
       - [Instantiate template](#instantiate-template)
       - [Create skeleton (Introduced in QTM 2021.2)](#create-skeleton-introduced-in-qtm-20212)
       - [Solve skeleton (Introduced in QTM 2021.2)](#solve-skeleton-introduced-in-qtm-20212)
+      - [Run script (Introduced in QTM 2024.3)](#run-script-introduced-in-qtm-20243)
     - [Fields](#fields)
     - [Columns](#columns)
   - [Default fields added by QTM](#default-fields-added-by-qtm)
@@ -411,6 +412,25 @@ Example 2 (using Compound to combine both types):
   Solve skeletons:
     Type: Solve skeleton
     Measurements: 'Running*'
+```
+
+#### Run script (Introduced in QTM 2024.3)
+This analysis runs a script using the [QTM Scripting Interface](https://qualisys.github.io/qtm-scripting/) and supports execution on multiple measurements.
+Each measurement is opened separately, the script is executed and then the measurement is closed.
+The script is selected using the `Filename` property.
+Measurements are selected using `Measurements` and `Exclude` properties.
+``NOTE: Saving measurements is not supported when using QSI in QTM 2024.3``
+Run script has the following properties:
+- **Filename**: Required. The path and name of the input file. It uses the ``Templates`` directory of the project as a base when the path is relative.
+- **Measurements**: Optional. Selected measurements. See: [Overview of analyses](#overview-of-analyses)
+- **Exclude**: Optional. See [Overview of analyses](#overview-of-analyses)
+
+Example:
+```
+  Create custom skeleton:   
+    Type: Run script
+    Measurements: 'Static*'
+    Filename: Scripts\create_custom_skeleton.py
 ```
 
 ### Fields
