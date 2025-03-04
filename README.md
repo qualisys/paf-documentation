@@ -431,16 +431,16 @@ Example:
 ```
 
 #### Separator (Introduced in QTM 2025.1)
-The Separator analysis adds a menu separator line in the `Start Processing` drop-down list. It does not perform any processing but serves as a visual divider to organize analyses in the menu.
+This analysis adds a menu separator line in the `Start Processing` drop-down list. It does not perform any processing but serves as a visual divider to organize analyses in the menu.
 
-To add a separator, define an analysis with type `Separator`:
+To add separators, first define an analysis with type `Separator`:
 ```
 Analyses:
   Separator:
     Type: Separator
 ```
 
-Then, include it in the list of analyses to structure the menu:
+Then, insert separators in the list of analyses to structure the menu:
 ```
   Analyses:
     - Solve skeletons
