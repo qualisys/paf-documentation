@@ -240,7 +240,7 @@ Analyses:
         …
 ```
 Each analysis definition is a map that has some properties common to all analysis types and some that are unique to certain types:
-- **Type**: Names of the analysis type. Valid values are External program, Visual3D, Report, Compound, HTTPRequest, Instantiate template, Create skeleton, Solve skeleton. For more information on analysis types, see section below. 
+- **Type**: Names of the analysis type. Valid values are External program, Visual3D, Report, Compound, HTTPRequest, Instantiate template, Create skeleton, Solve skeleton, and Separator. For more information on analysis types, see section below. 
 >Note: only External program and Compound are available to all users. Other types require the Project Automation Framework developer license which is used for internal Qualisys development and by development partners.
 >
 - **Prerequisites**: A sequence of measurement type names and analysis names that has to be completed before this analysis can be run. Measurement types are considered complete for the current session when the user has made at least the number of measurements given by that measurement type’s Minimum count field. Analyses are considered complete when the file denoted by the Output file field exists.
@@ -429,6 +429,27 @@ Example:
     Measurements: 'Static*'
     Filename: Scripts\create_custom_skeleton.py
 ```
+
+#### Separator (Introduced in QTM 2025.1)
+The Separator analysis adds a menu separator line in the `Start Processing` drop-down list. It does not perform any processing but serves as a visual divider to organize analyses in the menu.
+
+To add a separator, define an analysis with type `Separator`:
+```
+Analyses:
+  Separator:
+    Type: Separator
+```
+
+Then, include it in the list of analyses to structure the menu:
+```
+  Analyses:
+    - Solve skeletons
+    - Separator
+    - Generic web report
+    - Separator
+    - Functional Assessment web report
+```
+# ! ! ! IMAGE GOES HERE ! ! !
 
 ### Fields
 The fields section specifies all the fields that can be added to a type definition. There are also a number of field specifications hardcoded into QTM that are always added to the types. For a complete list, see the Default fields section.
