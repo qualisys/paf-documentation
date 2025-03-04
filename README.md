@@ -436,7 +436,7 @@ This analysis adds a menu separator line in the `Start Processing` drop-down lis
 To add separators, first define an analysis with type `Separator`:
 ```
 Analyses:
-  Separator:
+  ---:
     Type: Separator
 ```
 
@@ -444,9 +444,9 @@ Then, insert separators in the list of analyses to structure the menu:
 ```
   Analyses:
     - Solve skeletons
-    - Separator
+    - ---
     - Generic web report
-    - Separator
+    - ---
     - Functional Assessment web report
 ```
 ![separators_example](assets/images/Separators_example.png)
