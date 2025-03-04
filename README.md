@@ -449,7 +449,7 @@ Then, include it in the list of analyses to structure the menu:
     - Separator
     - Functional Assessment web report
 ```
-# ! ! ! IMAGE GOES HERE ! ! !
+![separators_example](assets/images/Separator_example.png)
 
 ### Fields
 The fields section specifies all the fields that can be added to a type definition. There are also a number of field specifications hardcoded into QTM that are always added to the types. For a complete list, see the Default fields section.
