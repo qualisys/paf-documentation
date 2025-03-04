@@ -431,9 +431,9 @@ Example:
 ```
 
 #### Separator (Introduced in QTM 2025.1)
-This analysis adds a menu separator line in the `Start Processing` drop-down list. It does not perform any processing but serves as a visual divider to organize analyses in the menu.
+This analysis adds a menu separator line in the `Start Processing` drop-down menu. It does not perform any processing but serves as a visual divider to organize analyses.
 
-To add separators, first define an analysis with type `Separator`:
+To add separators, first define an analysis with a unique name (defined as "---" in the example) with the type `Separator`:
 ```
 Analyses:
   ---:
