@@ -30,6 +30,7 @@ Version: 3.0.0
     - [Fields](#fields)
     - [Columns](#columns)
   - [Default fields added by QTM](#default-fields-added-by-qtm)
+- [Batch processing (Introduced in QTM 2026.1)](#batch-processing)
 - [Making a package available in QTM](#making-a-package-available-in-qtm)
 - [Preparing Visual3D scripts for PAF](#preparing-visual3d-scripts-for-paf)
   - [Editing Pipeline scripts](#editing-pipeline-scripts)
@@ -762,6 +763,19 @@ To check whether measurement is static or dynamic:
 ```
     if ($m['Measurement_type'] === 'Dynamic')
 ```
+
+# Batch processing (Introduced in QTM 2026.1)
+Batch processing is a feature that automatically runs the same analysis under `Start Processing` on multiple sessions.  
+From the wizard pane, the user simply selects folders by using `Ctrl + Left-Click` to add multiple folders.  
+Once all the folders have been selected, the user expands the drop-down list under `Start Processing` and clicks on the chosen analysis.  
+
+Here is an example to batch process multiple `Functional Assessment` sessions in the Calqulus module with `Step 2 (markerless) - Theia processing`.  
+<img src="assets/images/Batch_processing.png" width="500">  
+
+>Notes:
+>- Batch processing will only process sessions that include the chosen analysis.
+>- A selected session will be skipped if it does not include the analysis name.
+>- Logs are added to the QTM Messages window.
 
 # Tutorial: creating a PAF package
 1. Define static and dynamic marker set
