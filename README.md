@@ -338,6 +338,7 @@ The template instantiation is done in the following way:
     - **$template_directory** is the template directory.
     - **$analysis_name** is the name of the analysis being executed.
     - **$visual3d_path** is the whole path of Visual3D/Reckon3D executable that is set as external program in QTM project options (> QTM 2.16).
+    - **$batch_processing_info** provides info if QTM is running in batch processing mode. Values is either "batch" when batch is running or empty for a single session analysis. 
     - **$type_guids** contains an array with GUIDs of the analysis hierarchy. Can be used in conjunction with the the REST api (> QTM 2.14).
     - **$measurement_guids** contains an array with GUIDs of the measurements that are part of the analysis. Can be used in conjunction with the the REST api (> QTM 2.14).
 - The template_xml.php file puts the session data in the following global variables:
