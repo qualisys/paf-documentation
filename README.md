@@ -418,7 +418,7 @@ This analysis runs a script using the [QTM Scripting Interface](https://qualisys
 Each measurement is opened separately, the script is executed and then the measurement is closed.
 The script is selected using the `Filename` property.
 Measurements are selected using `Measurements` and `Exclude` properties.
-``NOTE: Saving measurements is not supported when using QSI in QTM 2024.3``
+``NOTE: Saving measurements is supported when using QSI from QTM 2026.2 onwards``
 Run script has the following properties:
 - **Filename**: Required. The path and name of the input file. It uses the ``Templates`` directory of the project as a base when the path is relative.
 - **Measurements**: Optional. Selected measurements. See: [Overview of analyses](#overview-of-analyses)
